@@ -18,7 +18,7 @@ __heroku_complete_base()
   db_options="--force --chunksize --filter --tables --disable-compression --resume-filename --indexes-last --debug"
 
   case "${previous_word}" in
-    --app)
+    --app|-a)
       COMPREPLY=($(compgen -W "$(__heroku_apps)" -- ${current_word}))
       return 0
       ;;
