@@ -48,7 +48,7 @@ __heroku_complete_base()
 
 __heroku_apps()
 {
-  echo `heroku list | awk '{{print $1}}' | tr '\n' ' '`
+  echo `heroku list | awk '{{print $1}}' | grep -v '^=*$' | tr '\n' ' '`
 }
 
 __rake_tasks()
