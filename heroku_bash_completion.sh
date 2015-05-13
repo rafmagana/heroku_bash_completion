@@ -2,6 +2,10 @@ __heroku_complete_base()
 {
   local current_word previous_word
 
+  for alias in "${!__heroku_aliases[@]}"; do
+    __heroku_commands_and_options[${alias}]=__heroku_commands_and_options[__heroku_aliases[${alias}]]
+  done
+
   _get_comp_words_by_ref -n ':' -c current_word -p previous_word
 
   case "${previous_word}" in
@@ -180,4 +184,45 @@ declare -A __heroku_commands_and_options=(
   ["update"]=""
   ["update:beta"]=""
   ["version"]=""
+)
+
+declare -A __heroku_aliases=(
+  ["-h"]="help"
+  ["--help"]="help"
+  ["config:add"]="config:set"
+  ["config:remove"]="config:unset"
+  ["features:list"]="features"
+  ["2fa"]="twofactor"
+  ["2fa:disable"]="twofactor:disable"
+  ["2fa:generate-recovery-codes"]="twofactor:generate_recovery_codes"
+  ["dynos"]="ps:dynos"
+  ["workers"]="ps:workers"
+  ["restart"]="ps:restart"
+  ["scale"]="ps:scale"
+  ["stop"]="ps:stop"
+  ["resize"]="ps:type"
+  ["stack:migrate"]="stack:set"
+  ["rake"]="run:rake"
+  ["console"]="run:console"
+  ["login"]="auth:login"
+  ["logout"]="auth:logout"
+  ["list"]="apps"
+  ["info"]="apps:info"
+  ["create"]="apps:create"
+  ["rename"]="apps:rename"
+  ["open"]="apps:open"
+  ["destroy"]="apps:destroy"
+  ["apps:delete"]="apps:destroy"
+  ["join"]="apps:join"
+  ["leave"]="apps:leave"
+  ["lock"]="apps:lock"
+  ["unlock"]="apps:unlock"
+  ["upgrade"]="apps:upgrade"
+  ["downgrade"]="apps:downgrade"
+  ["rollback"]="releases:rollback"
+  ["labs:list"]="labs"
+  ["addons:list"]="addons:services"
+  ["addons:add"]="addons:create"
+  ["addons:remove"]="addons:destroy"
+  ["clone"]="git:clone"
 )
