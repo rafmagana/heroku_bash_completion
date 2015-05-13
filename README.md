@@ -17,30 +17,21 @@ A set of function to autocomplete commands and options of the heroku gem.
 
     $ heroku cr[TAB] # => create
 
-    $ heroku o[TAB] # => open
+    $ heroku i[TAB] # => info
 
-    $ heroku open --[TAB]
-    --addons   --app      --remote   --stack    --timeout
+    $ heroku addons --[TAB]
+    --all       --app       --resource
 
-    $ heroku db:[TAB]
-    db:pull   db:push   db:reset
-
-    $ heroku db:pull --[TAB]
-    --chunksize            --disable-compression  --force                --resume-filename
-    --debug                --filter               --indexes-last         --tables
+    $ heroku addons:[TAB]
+    add        attach     create     destroy    detach     docsdowngrade
+    list       open       plans      remove     services   upgrade
 
     $ heroku rake[TAB] # => it will show all your rake tasks
 
     $ heroku rake db:mi[TAB] # => db:migrate
 
-	$ heroku info --app my[TAB] # => myapp
-	
-
-## Known bugs
-
-The heroku application completion is not working at 100%, it completes the app name but the line behaves in a weird way.
+    $ heroku info --app my[TAB] # => myapp
 
 ## ToDo
 
-* Fix the completion of heroku app names
 * Make it dynamic (right know all the commands an options are hard coded)
