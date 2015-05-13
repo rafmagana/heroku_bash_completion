@@ -11,6 +11,7 @@ __heroku_complete_base()
       ;;
     rake)
       COMPREPLY=($(compgen -W '$(__rake_tasks)' -- ${current_word}))
+      __ltrim_colon_completions "$current_word"
       return 0
       ;;
   esac
@@ -26,12 +27,12 @@ __heroku_complete_base()
 
 __heroku_apps()
 {
-  echo `heroku list | awk '{{print $1}}' | grep -v '^=*$' | tr '\n' ' '`
+  echo $(heroku list | awk '{{print $1}}' | grep -v '^=*$' | tr '\n' ' ')
 }
 
 __rake_tasks()
 {
-  echo `rake -s -T 2>/dev/null | awk '{{print $2}}'`
+  echo $(rake -sT 2>/dev/null | awk '{{print $2}}')
 }
 
 complete -F __heroku_complete_base heroku
